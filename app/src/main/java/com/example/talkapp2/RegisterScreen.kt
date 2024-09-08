@@ -106,7 +106,7 @@ fun RegisterScreen(navController: NavController) {
                 var newUser = UserManager.addUser(rut,password,username,UserManager.getCountUsers()+1)
 
                 // Simulamos que el usuario fue registrado con éxito
-                Toast.makeText(context, "Usuario registrado: ", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Usuario registrado: "+newUser.username, Toast.LENGTH_LONG).show()
 
                 // Redirigir a la pantalla de inicio de sesión
                 navController.navigate(Routes.login)
