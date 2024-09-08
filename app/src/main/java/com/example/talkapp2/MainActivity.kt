@@ -29,6 +29,9 @@ class MainActivity : ComponentActivity() {
                 composable (Routes.register){
                     RegisterScreen(navController = nav)
                 }
+                composable (Routes.home){
+                    HomeScreen(navController = nav)
+                }
             })
 
 

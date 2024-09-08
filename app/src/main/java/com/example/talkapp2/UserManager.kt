@@ -32,9 +32,7 @@ object UserManager {
     fun getUsers(): List<User> {
         return users
     }
-    fun getUserByUsernameAndEmail(email: String, username: String): User? {
-        return users.find { it.email == email && it.username == username }
-    }
+
     fun getCountUsers():Int{
         return users.size
     }
@@ -59,13 +57,14 @@ object UserManager {
         return users.find { it.id == id  }
     }
 
-    fun findUser(email: String, password: String): User? {
-        return users.find { it.email == email && it.password == password }
+    fun findUser(rut: String, password: String): User? {
+        return users.find { it.rut == rut && it.password == password }
     }
 
-    fun addUser(email: String, password: String, username: String, id : Int) {
-        val newUser = User(email, password, username, id)
+    fun addUser(rut: String, password: String, username: String, id : Int) :User{
+        val newUser = User(rut, password, username, id)
         users.add(newUser)
+        return newUser
     }
     fun delUserLog(){
         user_log = User()
@@ -76,7 +75,7 @@ object UserManager {
 }
 
 data class User(
-    val email: String ="",
+    val rut: String ="",
     val password: String="",
     val username: String="",
     val id: Int =0

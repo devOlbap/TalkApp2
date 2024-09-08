@@ -1,5 +1,6 @@
 package com.example.talkapp2
 
+import android.content.Intent
 import androidx.compose.material3.*
 import android.util.Log
 import android.widget.Toast
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavController
@@ -31,6 +33,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun LoginScreen (navController : NavController){
+    val context = LocalContext.current
 
     var rut by remember {
         mutableStateOf("")
@@ -82,8 +85,32 @@ fun LoginScreen (navController : NavController){
         )
         Button(
             onClick = {
-                //Toast.makeText(this, "rut:"+rut+" - pass: "+pass, Toast.LENGTH_SHORT).show()
-                Log.i("credenciales","RUT: $rut PASS: $pass")
+
+                if(rut.trim().length == 0 ){
+                    Toast.makeText(context, "Debe ingresar un RUT", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                if(pass.trim().length == 0 ){
+                    Toast.makeText(context, "Debe ingresar una contraseña", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                var user = UserManager.findUser(rut,pass)
+
+                if(user == null){
+                    Toast.makeText(context, "No se registra usuario con las credenciales ingresadas", Toast.LENGTH_LONG).show()
+                    return@Button
+                }
+
+                Toast.makeText(context, "Bienvenid@! "+user.username+".", Toast.LENGTH_SHORT).show()
+
+                UserManager.setUserLog(user)
+
+                navController.navigate(Routes.home) // home
+
+
+
             },
             modifier = Modifier.height(50.dp).width(250.dp)
             ) {
