@@ -1,8 +1,5 @@
 package com.example.talkapp2
 
-import android.content.Intent
-import androidx.compose.material3.*
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -96,7 +92,7 @@ fun LoginScreen (navController : NavController){
                     return@Button
                 }
 
-                var user = UserManager.findUser(rut,pass)
+                val user = UserManager.findUser(rut,pass)
 
                 if(user == null){
                     Toast.makeText(context, "No se registra usuario con las credenciales ingresadas", Toast.LENGTH_LONG).show()

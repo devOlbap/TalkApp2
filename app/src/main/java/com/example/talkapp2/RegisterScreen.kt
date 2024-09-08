@@ -1,8 +1,5 @@
 package com.example.talkapp2
 
-import android.content.Intent
-import androidx.compose.material3.*
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -27,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavController
 
 @Composable
@@ -100,15 +95,10 @@ fun RegisterScreen(navController: NavController) {
                     return@Button
                 }
 
-                // Crear un nuevo usuario
-                //val newUser = User(rut = rut, password = password, username = username)
+                val newUser = UserManager.addUser(rut,password,username,UserManager.getCountUsers()+1)
 
-                var newUser = UserManager.addUser(rut,password,username,UserManager.getCountUsers()+1)
-
-                // Simulamos que el usuario fue registrado con éxito
                 Toast.makeText(context, "Usuario registrado: "+newUser.username, Toast.LENGTH_LONG).show()
 
-                // Redirigir a la pantalla de inicio de sesión
                 navController.navigate(Routes.login)
             },
             modifier = Modifier
