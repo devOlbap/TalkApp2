@@ -1,5 +1,6 @@
 package com.example.talkapp2
 
+import androidx.compose.material3.*
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -8,7 +9,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -82,7 +85,7 @@ fun LoginScreen (navController : NavController){
                 //Toast.makeText(this, "rut:"+rut+" - pass: "+pass, Toast.LENGTH_SHORT).show()
                 Log.i("credenciales","RUT: $rut PASS: $pass")
             },
-            modifier = Modifier.height(45.dp)
+            modifier = Modifier.height(50.dp).width(250.dp)
             ) {
             Text(text = "Ingresar")
 
@@ -93,13 +96,15 @@ fun LoginScreen (navController : NavController){
         )
 
         TextButton(
-            onClick = { /*TODO*/ }
+            onClick = {
+                navController.navigate(Routes.register)
+            }
         ) {
             Text(
                 text = "Registrate",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.LightGray,
+                color = Color.DarkGray,
                 textDecoration = TextDecoration.Underline
             )
         }

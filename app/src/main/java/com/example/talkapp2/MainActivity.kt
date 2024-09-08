@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.talkapp2.ui.theme.TalkApp2Theme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +21,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginScreen()
+            val nav = rememberNavController()
+            NavHost(navController = nav, startDestination = Routes.login, builder = {
+                composable (Routes.login){
+                    LoginScreen(navController = nav)
+                }
+                composable (Routes.register){
+                    RegisterScreen(navController = nav)
+                }
+            })
+
+
         }
     }
 }
