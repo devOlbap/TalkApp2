@@ -32,6 +32,9 @@ class MainActivity : ComponentActivity() {
                 composable (Routes.home){
                     HomeScreen(navController = nav)
                 }
+                composable (Routes.listen){
+                    ListenScreen(navController = nav)
+                }
             })
 
 

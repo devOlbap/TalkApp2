@@ -4,4 +4,5 @@ object Routes {
     var login = "Login"
     var register = "Register"
     var home = "Home"
+    var listen = "Listen"
 }

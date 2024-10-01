@@ -103,7 +103,7 @@ fun LoginScreen (navController : NavController){
 
                 UserManager.setUserLog(user)
 
-                navController.navigate(Routes.home) // home
+                navController.navigate(Routes.listen) // home
 
 
 
