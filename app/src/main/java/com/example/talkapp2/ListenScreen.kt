@@ -123,7 +123,7 @@ fun ListenScreen(navController: NavController) {
             val recognizedText = matches?.firstOrNull() ?: "No se pudo reconocer"
             texto = recognizedText
 
-            // Reproducir el texto reconocido usando el TTS creado en el bloque composable
+            // Reproducir el texto reconocido
             //tts.speak(recognizedText, TextToSpeech.QUEUE_FLUSH, null, null) // lo comentamos pero esta buena la funcionalidad
 
             val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())

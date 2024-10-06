@@ -86,7 +86,6 @@ fun LoginScreen(navController: NavController) {
                         if (userFound != null) {
                             Toast.makeText(context, "Bienvenid@! ${userFound.username}.", Toast.LENGTH_SHORT).show()
                             UserManager.setUserLog(userFound)
-                            // Aquí puedes guardar al usuario en alguna variable global o clase de sesión
                             navController.navigate(Routes.listen) // Redirigir al home
                         } else {
                             Toast.makeText(context, "No se registra usuario con las credenciales ingresadas", Toast.LENGTH_LONG).show()
@@ -121,7 +120,9 @@ fun LoginScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(50.dp))
 
-        TextButton(onClick = { /* Aquí iría la recuperación de contraseña */ }) {
+        TextButton(onClick = {
+
+        }) {
             Text(
                 text = "¿Olvidaste tu contraseña?",
                 fontSize = 20.sp,
