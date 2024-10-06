@@ -2,9 +2,9 @@ package com.example.talkapp2
 
 object UserManager {
     private val users = mutableListOf<User>(
-        User("1-2", "123", "admin", 1),
-        User("1-3", "pauli123", "pauli", 2),
-        User("1-9", "olbap123", "olbap", 3)
+        User("1-2", "123", "admin", ),
+        User("1-3", "pauli123", "pauli", ),
+        User("1-9", "olbap123", "olbap",)
     )
 
 
@@ -21,9 +21,10 @@ object UserManager {
         user_log = user
     }
 
-    fun setUserRecoverId(user:User){
-        id_user_recover = user.id
-    }
+
+//    fun setUserRecoverId(user:User){
+//        id_user_recover = user.id
+//    }
 
     fun getUserLog():User{
         return user_log
@@ -36,36 +37,36 @@ object UserManager {
     fun getCountUsers():Int{
         return users.size
     }
-    fun setNewPassword(id: Int, newPassword: String): Boolean {
-        val user = getUserById(id)
-        return if (user != null) {
-            val updatedUser = user.copy(password = newPassword)
-            val index = users.indexOf(user)
-            if (index != -1) {
-                users[index] = updatedUser
-                true
-            } else {
-                false
-            }
-        } else {
-            false
-        }
-    }
+//    fun setNewPassword(id: Int, newPassword: String): Boolean {
+//        val user = getUserById(id)
+//        return if (user != null) {
+//            val updatedUser = user.copy(password = newPassword)
+//            val index = users.indexOf(user)
+//            if (index != -1) {
+//                users[index] = updatedUser
+//                true
+//            } else {
+//                false
+//            }
+//        } else {
+//            false
+//        }
+//    }
 
 
-    fun getUserById(id:Int): User? {
-        return users.find { it.id == id  }
-    }
+//    fun getUserById(id:Int): User? {
+//        return users.find { it.id == id  }
+//    }
 
     fun findUser(rut: String, password: String): User? {
         return users.find { it.rut == rut && it.password == password }
     }
 
-    fun addUser(rut: String, password: String, username: String, id : Int) :User{
-        val newUser = User(rut, password, username, id)
-        users.add(newUser)
-        return newUser
-    }
+//    fun addUser(rut: String, password: String, username: String, id : Int) :User{
+//        val newUser = User(rut, password, username, id)
+//        users.add(newUser)
+//        return newUser
+//    }
     fun delUserLog(){
         user_log = User()
     }
@@ -78,5 +79,4 @@ data class User(
     val rut: String ="",
     val password: String="",
     val username: String="",
-    val id: Int =0
 )

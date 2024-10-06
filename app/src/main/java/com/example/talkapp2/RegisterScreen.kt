@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.navigation.NavController
+import com.google.firebase.database.FirebaseDatabase
 
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -95,11 +96,29 @@ fun RegisterScreen(navController: NavController) {
                     return@Button
                 }
 
-                val newUser = UserManager.addUser(rut,password,username,UserManager.getCountUsers()+1)
+                val db  = FirebaseDatabase.getInstance()
+                val ref = db.getReference("users")
 
-                Toast.makeText(context, "Usuario registrado: "+newUser.username, Toast.LENGTH_LONG).show()
+                val user = User(
+                    rut= rut,
+                    username = username,
+                    password = password
+                )
 
-                navController.navigate(Routes.login)
+                ref.push().setValue(user).addOnCompleteListener{
+                    task ->
+                        if(task.isSuccessful){
+                            Toast.makeText(context, "Usuario registrado ", Toast.LENGTH_LONG).show()
+                            navController.navigate(Routes.login)
+                        }else{
+                            Toast.makeText(context, "Usuario no registrado", Toast.LENGTH_LONG).show()
+                        }
+                }
+
+//                val newUser = UserManager.addUser(rut,password,username,UserManager.getCountUsers()+1)
+//
+//                Toast.makeText(context, "Usuario registrado: "+newUser.username, Toast.LENGTH_LONG).show()
+//
             },
             modifier = Modifier
                 .height(50.dp)
@@ -121,3 +140,4 @@ fun RegisterScreen(navController: NavController) {
         }
     }
 }
+
